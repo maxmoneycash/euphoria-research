@@ -1,0 +1,4 @@
+release/
+__pycache__/
+.DS_Store
+*.npy
