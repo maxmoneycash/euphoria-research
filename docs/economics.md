@@ -41,11 +41,27 @@ on two adjacent tiles per column, 10 to 30 s ahead, at 3x to 6x, the range where
 house-generated market carries no margin. Its ten-day result was +$9,858 on $368k staked
 (+2.7% ± 2.4%), not distinguishable from break-even.
 
+## After the data release
+
+From block 32,550,000 (Nov 21) to 32,956,639 (Nov 26), outside the released data, the vault lost
+**$20,861** (USDm transfers between the Exchange and the vault; nothing was withdrawn). It held
+$174,700 on Nov 26.
+
+Most of it went to the same largest account. It staked $236,833 over 5,027 bets and came out
+$32,375 ahead, 13.7% of its stake; the next best wallet made $1,282. It won 1,524 of its 5,027
+bets. In a random sample of 600 of them, 534 were on "Steady" (E11), where it won 33.7% against the
+28.6% its multipliers imply (about 2.6 standard errors), with most fills 10 to 24 s before the
+window starts.
+The house quotes that market from a price about 4 s old with no margin
+([pricing](pricing.md)), which would leave room for this, but the data here does not show how it
+was done.
+
 ## How it stays solvent
 
 - **The bankroll is the house's own money.** $35,000 came in from the owner Safe; the rest is
   accumulated player losses. No outside depositors are exposed.
-- **Small exposure.** Open bets were around $650 to $800 against a vault of about $195,000.
+- **Small exposure.** Open bets were around $650 to $800 against a vault of about $195,000
+  (Nov 21).
 - **A margin**, at least on real assets (players got back 96% in late October).
 - **Operator control**: odds are chosen off-chain, positions can be cancelled, contracts can be
   upgraded.

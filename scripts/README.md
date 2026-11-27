@@ -16,6 +16,9 @@ retry and sleep between calls.
 | `binance_trades.py SYMBOL t0 t1 out.npy` | Binance spot trades onto a 100 ms grid |
 | `to_grid.py in.npy out.csv` | Ticks to a gapless 100 ms CSV |
 | `venues/record.mjs SECONDS out.csv` | Live BTC trades from eight venues at once (Node 22+) |
+| `probe_contracts.py` | Reads the Exchange and Vault through their view functions: markets, operators, one live position, vault totals |
+| `simulate_operator.py` | `eth_call` simulations of operator settle, cancel and operator management from an operator key, the owner Safe and an outsider (no transactions) |
+| `check_names.py` | Checks recovered function names against the selectors in `contracts/bytecode` (needs pycryptodome) |
 
 ## Analyse
 

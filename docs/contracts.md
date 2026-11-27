@@ -2,7 +2,8 @@
 
 Everything here was read from MegaETH mainnet (chain id 4326). Euphoria's contracts are not
 verified on the block explorer, so function names come from decompiling the bytecode and from
-watching what each call does in real transactions.
+watching what each call does in real transactions. Reconstructed interfaces, the decompiler
+output and the evidence for each function are in [`contracts/`](../contracts).
 
 ## Addresses
 
@@ -61,8 +62,9 @@ This rule matched 1,853 of 1,853 positions checked against their settlement pric
 | Odds (house stake) | No. The operator picks `makerAmount`; a replayed order with it raised 10,000x succeeded in simulation and only fails if the vault cannot cover it |
 | Settlement price | Signed low/high checked against a hardcoded signer list; one valid signature is enough |
 | Price freshness | A signed price older than 180 s is rejected |
-| Operator override settle | Exists (`0x73b13318(positionId, low, high)`): after expiry an operator can settle with prices it supplies |
+| Operator override settle | Exists (`0x73b13318(positionId, low, high)`): after expiry an operator can settle with prices it supplies. Simulated one block after a window ended, a low of $0.00000001 and high of $0.00000002 were accepted, which makes the player lose; only low > high is rejected |
 | Operator cancel | Exists (`0xab73418a`): refunds both sides of a live position |
+| Operator keys | 1,000 keys, set by the owner Safe; all replaced once, in May. They cannot sign prices |
 | Upgrades | The owner Safe can replace the Exchange and Vault logic |
 
 In practice the overrides are rarely used: 33 operator cancels in the contract's whole history
@@ -77,4 +79,5 @@ eleven points in history used an oracle-signed price rather than an operator-sup
   rest of the balance is trading profit.
 - Nothing has ever been withdrawn.
 - Open exposure is small relative to the bankroll: around $650 to $800 locked in open positions
-  against a vault of about $195,000 when checked in November.
+  against a vault of about $195,000 on Nov 21 and $174,700 on Nov 26 (see
+  [economics](economics.md#after-the-data-release)).

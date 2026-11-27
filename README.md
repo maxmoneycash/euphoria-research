@@ -7,13 +7,15 @@ MegaETH chain logs, the public web bundle, and public exchange market data. All 
 used is published here so the numbers can be checked.
 
 Not affiliated with Euphoria or RedStone. Nothing here is financial or legal advice. This repo
-contains research and data only, no app.
+contains research, data and contract interfaces only, no app.
 
 ## Findings
 
 - **The house is the counterparty to every bet.** One vault, owned by a 2-of-3 Safe, takes the
   other side. The player signs their stake and tile; an operator key chooses the house's stake,
-  so the odds are set off-chain and not checked by the contract. ([contracts](docs/contracts.md))
+  so the odds are set off-chain and not checked by the contract. After a window ends, an
+  operator key can also settle with any prices it likes; that power exists but is not seen in use.
+  ([contracts](docs/contracts.md), [interfaces](contracts))
 - **A bet is a box.** A tile pays if the price touches a price band at any moment of a 5-second
   window. Winner takes the whole pot; the fee is zero.
 - **Two kinds of market.** ETH, BTC and SOL settle on the low and high of
@@ -33,6 +35,8 @@ contains research and data only, no app.
   $6.71M staked, $6.54M paid out, about **$164,000** kept by the house (2.45% of volume). More
   than half of that came in May. The top wallet is 24% of all volume; the top 10 are 58%.
   ([economics](docs/economics.md))
+- **Since the data release** (Nov 21 to 26) the house lost about $21,000, most of it to its
+  largest account, which is up $32,000 on $237,000 staked. ([economics](docs/economics.md#after-the-data-release))
 - **Solvency** rests on the house's own bankroll ($35,000 deposited, the rest accumulated
   winnings), small open exposure, a margin on real assets (players got back 96% in late October),
   and operator control. Nothing on-chain guarantees it.
@@ -41,6 +45,13 @@ contains research and data only, no app.
   ([classification](docs/classification.md))
 
 What is still unknown, and corrections to earlier drafts: [limits](docs/limits.md).
+
+## Contracts
+
+[`contracts/`](contracts) has interfaces for the Exchange and Vault rebuilt from the bytecode. Every
+name in them hashes to a deployed selector; functions whose names are unknown are listed by
+selector, with what each does as seen in transactions and simulated calls. The raw heimdall
+decompiler output and the bytecode are there too.
 
 ## Data
 
